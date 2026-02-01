@@ -1,10 +1,15 @@
+// features/gap/gap.types.ts
+
+export type BillType = "rent" | "utilities" | "phone" | "subscription" | "loan" | "other";
+export type Cadence = "monthly" | "weekly" | "one_time";
+
 export type Bill = {
   id: string;
   name: string;
-  type: "rent" | "utilities" | "phone" | "subscription" | "loan" | "other";
+  type: BillType;
   amount: number;
-  dueDate: string;
-  cadence: "monthly" | "weekly" | "one_time";
+  dueDate: string; // YYYY-MM-DD
+  cadence: Cadence;
   isEssential: boolean;
 };
 
@@ -19,7 +24,7 @@ export type IncomeItem = {
   id: string;
   name: string;
   amount: number;
-  expectedDate: string;
+  expectedDate: string; // YYYY-MM-DD
   confidence: "high" | "medium" | "low";
 };
 
@@ -27,10 +32,11 @@ export type GapMode = "through_end_of_month" | "next_14_days";
 
 export type GapInput = {
   mode: GapMode;
+  startDate?: string; // optional anchor date (YYYY-MM-DD)
   accounts: AccountBalance[];
   bills: Bill[];
   income: IncomeItem[];
-  bufferPercent: number;
+  bufferPercent: number; // e.g. 0.05
   rounding: "none" | "nearest_5" | "nearest_10";
 };
 
@@ -44,5 +50,10 @@ export type GapResult = {
     buffer: number;
     neededTotal: number;
     gap: number;
+  };
+  // optional helpers for UI later
+  lists?: {
+    billsInWindow?: Bill[];
+    incomeInWindow?: IncomeItem[];
   };
 };

@@ -1,3 +1,4 @@
+// types/index.ts
 export type ID = string;
 export type Money = number;
 
@@ -11,6 +12,8 @@ export type TxCategory =
   | "Bills"
   | "Gas"
   | "Health"
+  | "Kids"
+  | "Subscriptions"
   | "Other";
 
 export type Transaction = {
@@ -22,12 +25,14 @@ export type Transaction = {
   isPending?: boolean;
 };
 
+export type ReflectionStress = "low_stress" | "neutral" | "high_stress";
+
 export type Reflection = {
   id: ID;
   transactionId: ID;
   createdAt: string; // ISO
-  stress: "low_stress" | "neutral" | "high_stress";
-  reasonTags: string[];
+  stress: ReflectionStress;
+  reasonTags: string[]; // can tighten later if you want
   note?: string;
 };
 

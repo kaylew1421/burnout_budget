@@ -1,7 +1,18 @@
+// store/subscription.store.ts
 import { createMemoryStore } from "./_memory";
-type State = { isPro: boolean };
-const store = createMemoryStore<State>({ isPro: false });
+
+type State = {
+  isPro: boolean;
+};
+
+const store = createMemoryStore<State>({
+  isPro: false, // demo default
+});
+
 export const subscriptionStore = {
   ...store,
-  setPro(v: boolean) { store.setState(() => ({ isPro: v })); },
+
+  setPro(isPro: boolean) {
+    store.setState((s) => ({ ...s, isPro }));
+  },
 };

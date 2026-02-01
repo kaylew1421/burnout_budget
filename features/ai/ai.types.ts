@@ -27,6 +27,12 @@ export type AIChatRequest = {
   history?: AIHistoryItem[];
 };
 
+export type AIAction =
+  | { type: "open"; label: string; href: string }
+  | { type: "prefillExpense"; label: string; merchantName?: string; amount?: number; category?: string };
+
 export type AIChatResponse = {
   assistantMessage: string;
+  quickReplies?: string[];
+  actions?: AIAction[];
 };

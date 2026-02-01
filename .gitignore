@@ -1,6 +1,28 @@
-node_modules
-.expo
-dist
-web-build
+# dependencies
+node_modules/
+
+# Expo
+.expo/
+dist/
+web-build/
+
+# React Native
 *.log
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+*.tmp
+*.temp
+
+# iOS / Android native (if generated)
+ios/
+android/
+
+# env files (secrets)
+.env
+.env.local
+.env.*.local
+
+# OS
 .DS_Store
+Thumbs.db
